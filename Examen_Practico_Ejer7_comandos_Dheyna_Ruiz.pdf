@@ -1,0 +1,45 @@
+Ejercicio 7. Creación e incorporación de las claves públicas en un documento PDF, así como los comandos ejecutados para las subidas de los ficheros a cada uno de los documentos
+La creación de la clave, se realiza con el comando:
+Ssh-keygen -t ed25519 -b 4096 -C “dheyna99@gmail.com”
+ 
+Para la incorporación de la calve en el repositorio se hace con los siguientes comandos:
+1.	Configurar Git:
+Git config –global user.name “Dheyna”
+git config –global user.email dheyna99@gmail.cm
+2.	Copiar la clave pública:
+Cat ~/.ssh/id_rsa.pub
+3.	Se agrega la clave a la cuenta accediendo a la aplicación en “New SSH Key” o Add SSH Key”. Otra forma de hacerlo es agregándola al agente SSH, que se hace reemplazando con nuestro archivo de clave ssh pública en el siguiente comando:
+Ssh-add ~/.shh/dheyna2.pub
+4.	Verificar que se ha agregado correctamente:
+Ssh-add -1
+5.	Para subir los ficheros hay que inicializar un repositorio Git:
+Cd /home/Dheyna
+Git init
+
+6.	Agregar los archivos:
+Git add tarea2.py tarea3.py tarea4.py tarea5.py espacio.service espacio.log ExamenPractico_Ejer7_comandos_Dheyna_Ruiz.pdf
+Git add
+7.	Realizar commit para explicar los cambios que estamos realizando:
+Git commit -m “Agregando nuevos archivos”
+8.	Se crea el repositorio desde la web de GitHub, siguiendo las indicaciones de README.md
+9.	Agregamos el origen remoto:
+Git remote add origin https://github.com/dheyna/EjerciciosPython.git
+10.	Subimos los cambios:
+Git push -u origin master.
+
+En bitbucket:
+Una vez generada nuestra contraseña ssh pública.
+1.	Se envia mediante el comando curl, la clave SSH pública usando la API:
+Curl -X POST -H “Content-Type: application/json” -u Dheyna https://api.bitbucket.org/2.0/users/dheyna/ssh-keys -d {“key”: “SHA256:alsuEWN/xVwIRfBDBJtRn2lx0F7395xReS7jmFupJdg”
+2.	Verificamos que se ha subido correctamente:
+Ssh -T git@bitbucket.org.
+3.	Para añadir nuestros ficheros, primero debemos clonar el repositorio en la maquina:
+Git clone https://bitbucket.org/ejerciciospythonbutbucket/ejerciciospython/src/main/
+4.	Agregar los archivos al repositorio clonado:
+Cd ejerciciospython
+git add tarea2.py tarea3.py tarea4.py tarea5.py espacio.service espacio.log ExamenPractico_Ejer7_comandos_Dheyna_Ruiz
+git add .
+5.	Mensaje descriptivo:
+Git commit -m “ejercicios Python del examen”
+6.	Para subir los cambios al repositorio remoto:
+Git push origin master
